@@ -1,4 +1,4 @@
-import { User, userValidator, userValidatorWithOutEmail } from "./userModel.js";
+import { User, userValidator, userValidatorWithOutEmail } from "./models/userModel.js";
 
 
 export const addUser = async (req, res) => {
@@ -9,7 +9,6 @@ export const addUser = async (req, res) => {
     let validate = userValidator({ userName, email, phone });
     if (validate.error)
         return res.status(400).send(validate.error.details);
-
 
     try {
         let sameEmail = await User.findOne({ email });

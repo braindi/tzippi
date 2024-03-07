@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
-import Joi from "joi";
+const mongoose = require("mongoose");
+const Joi = require('joi');
+
 
 const userSchema = mongoose.Schema({
 
@@ -9,9 +10,9 @@ const userSchema = mongoose.Schema({
 
 });
 
-export const User = mongoose.model("users", userSchema);
+// export const User = mongoose.model("users", userSchema);
 
-export const userValidator = (userToValidate) => {
+exports.userValidator = (userToValidate) => {
     let userJoi = Joi.object({
         userName: Joi.string().required(),
         email: Joi.string().email().custom((value, helpers) => {
@@ -25,10 +26,12 @@ export const userValidator = (userToValidate) => {
     return userJoi.validate(userToValidate);
 }
 
-export const userValidatorWithOutEmail = (userToValidate) => {
-    let userJoi = Joi.object({
-        userName: Joi.string().required(),
-        phone: Joi.string().required()
-    })
-    return userJoi.validate(userToValidate);
-}
+
+
+// export const userValidatorWithOutEmail = (userToValidate) => {
+//     let userJoi = Joi.object({
+//         userName: Joi.string().required(),
+//         phone: Joi.string().required()
+//     })
+//     return userJoi.validate(userToValidate);
+// }
